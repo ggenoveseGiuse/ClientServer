@@ -4,7 +4,9 @@
  */
 package clientserverOOP;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.logging.Level;
@@ -36,15 +38,30 @@ public class Server {
     }
     
     public void scrivi(){
-        // inserisci corpo 
+        // inserisci corpo
     }
     
     public void leggi(){
-        // inserisci corpo 
+        String messaggioRicevuto;
+        
+        
+        try {
+            
+        BufferedReader br = new BufferedReader(
+        new InputStreamReader(clientSocket.getInputStream()));
+            messaggioRicevuto = br.readLine();
+        System.out.println("3-il client ha scritto: " + messaggioRicevuto);
+        } catch (IOException ex) {
+            Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     public void chiudi(){
-        // inserisci corpo 
+        try {
+           clientSocket.close();
+        } catch (IOException ex) {
+            Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     public void termina(){

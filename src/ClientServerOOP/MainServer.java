@@ -12,7 +12,8 @@ public class MainServer {
     public static void main(String[] args) {
         Server s1 = new Server(2000);
         s1.attendi();
-        
+        s1.leggi();
+        s1.chiudi();
         
         
     }
