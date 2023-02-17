@@ -20,6 +20,8 @@ public class Server {
     ServerSocket serverSocket;
     Socket clientSocket;
     int porta;
+    int connessioni=0;
+    int timeout=60000;
     
     public Server(int porta){
         this.porta = porta;
@@ -27,14 +29,18 @@ public class Server {
     
     public Socket attendi(){
         
+        while(connessioni<10){
         try {
             serverSocket = new ServerSocket(2000);
             clientSocket = serverSocket.accept();  // va in esecuzione se il client chiede la connessione
             System.out.println("Connessione stabilita");
+            serverSocket.setSoTimeout(timeout);
         } catch (IOException ex) {
             Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
         }
-           return clientSocket; 
+           connessioni++;
+     }
+     return clientSocket; 
     }
     
     public void scrivi(){
@@ -43,28 +49,33 @@ public class Server {
     
     public void leggi(){
         String messaggioRicevuto;
-        
+        InputStreamReader is;
         
         try {
+           
             
         BufferedReader br = new BufferedReader(
-        new InputStreamReader(clientSocket.getInputStream()));
+      is = new InputStreamReader(clientSocket.getInputStream()));
             messaggioRicevuto = br.readLine();
         System.out.println("3-il client ha scritto: " + messaggioRicevuto);
-        } catch (IOException ex) {
+         } catch (IOException ex) {
             Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
     public void chiudi(){
+        
+       
         try {
            clientSocket.close();
         } catch (IOException ex) {
             Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }
+      }
+    
     
     public void termina(){
         // inserisci corpo 
     }
 }
+
