@@ -9,11 +9,16 @@ package clientserverOOP;
  * @author Giuseppe Genovese
  */
 public class MainServer {
+     /**
+     * Metodo statico per l'avvio della classe.
+     * @param args argomenti da linea di comando
+     */
     public static void main(String[] args) {
-        Server s1 = new Server(2000);
-        s1.attendi();
-        
-        
-        
+        Server s = new Server(2000);
+        if (s != null) {
+                s.attendi();
+                s.leggi();
+                // s.chiudi();
+            }
     }
 }
