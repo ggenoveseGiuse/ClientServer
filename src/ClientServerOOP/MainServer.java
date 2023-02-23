@@ -18,6 +18,7 @@ public class MainServer {
         if (s != null) {
                 s.attendi();
                 s.leggi();
+                s.scrivi();
                 // s.chiudi();
             }
     }

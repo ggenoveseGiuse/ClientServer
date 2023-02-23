@@ -71,15 +71,19 @@ public class Server {
      * Metodo che invia un messaggio al client.
      */
     public void scrivi(){
+        String messaggio = "Ciao Client, sono Server!!";
+
         try{
-            os = connection.getOutputStream();    // ottenimento dello stream di output
-            String messaggio = "Ciao, sono il server!";    // messaggio da inviare al client
-            os.write(messaggio.getBytes());    // scrittura del messaggio sullo stream di output
-            os.flush();    // invio del messaggio al client
+            // Scrittura sullo stream di output
+            os = clientSocket.getOutputStream();
+            os.write(messaggio.getBytes());
+            // Invio del messaggio al client
+            os.flush();
         }
         catch (IOException ex) {
             Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
-            System.err.println("Errore nella scrittura e/o nell'invio dei dati al server!");
+            System.err.println("Errore nella scrittura e/o nell'invio dei dati al client!");
         }
-   } 
+    }
+
 }   // fine classe

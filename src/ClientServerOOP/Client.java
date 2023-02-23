@@ -81,6 +81,7 @@ public class Client {
   
     public void leggi(){
         String messaggioRicevuto;
+        
         try {
             BufferedReader br = new BufferedReader(
             new InputStreamReader(serverSocket.getInputStream()));
